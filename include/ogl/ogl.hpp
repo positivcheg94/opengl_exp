@@ -1,5 +1,6 @@
 #pragma once
 
 #include <ogl/types.hpp>
-#include <ogl/buffers/buffers_all.hpp>
-#include <ogl/program/program_all.hpp>
+#include <ogl/buffers/all.hpp>
+#include <ogl/program/all.hpp>
+#include <ogl/shapes/all.hpp>
