@@ -15,6 +15,7 @@ file(COPY "${GLFW_SOURCE_DIR}/deps/glad/glad.h" DESTINATION "${CMAKE_BINARY_DIR}
 file(COPY "${GLFW_SOURCE_DIR}/deps/KHR/khrplatform.h" DESTINATION "${CMAKE_BINARY_DIR}/additional_include/KHR/")
 
 include_directories(dependencies/glm)
+include_directories(dependencies/stb)
 
 include_directories("include/")
 include_directories("${CMAKE_BINARY_DIR}/additional_include/")

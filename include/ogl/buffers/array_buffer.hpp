@@ -13,11 +13,11 @@ namespace ogl
 {
     struct VerticeAttribute
     {
-        size_t  index;
-        size_t  cols;
-        Bool    normalized;
-        size_t  stride;
-        size_t  offset;
+        std::uint16_t   index;
+        std::uint16_t   cols;
+        Bool            normalized;
+        std::uint16_t   stride;
+        std::uint16_t   offset;
     };
 
     struct BufferLayout
@@ -63,7 +63,7 @@ namespace ogl
                         glBindVertexArray(0);
                         throw std::runtime_error("Index is used already");
                     }
-                    glVertexAttribPointer(l.index, l.cols, b->get_value_type().type_index, utils::to_underlying(l.normalized), l.stride, reinterpret_cast<void*>(l.offset));
+                    glVertexAttribPointer(l.index, l.cols, b->get_value_type().type_index, utils::to_underlying(l.normalized), b->get_value_type().type_size * l.stride, reinterpret_cast<void*>(b->get_value_type().type_size * l.offset));
                     glEnableVertexAttribArray(l.index);
                 }
                 b->deactivate();
