@@ -68,21 +68,21 @@ int main(void)
     glfwSwapInterval(1);
 
     float vertices[] = {
-        // positions         // colors
-        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
-        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
-
+        // positions          // colors           // texture coords
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
+        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
+    };
+    unsigned int indices[] = {
+        0, 1, 3, // first triangle
+        1, 2, 3  // second triangle
     };
 
-
-    unsigned int indices[] = {  // note that we start from 0!
-        0, 1, 2   // first triangle
-    };
     
     auto vertice_buffer = ogl::Buffer::create(ogl::BufferType::Array        , ogl::Float, vertices  , sizeof(vertices)  , ogl::UsageHint::StaticDraw);
     auto index_buffer   = ogl::Buffer::create(ogl::BufferType::ElementArray , ogl::UInt , indices   , sizeof(indices)   , ogl::UsageHint::StaticDraw);
-    auto vao            = ogl::ArrayBuffer::create({{ vertice_buffer, { { 0, 3, ogl::True, 6, 0 }, { 1, 3, ogl::True, 6, 3 } } }}, index_buffer);
+    auto vao            = ogl::ArrayBuffer::create({{ vertice_buffer, { { 0, 3, ogl::True, 8, 0 }, { 1, 3, ogl::True, 8, 3 },{ 2, 2, ogl::True, 8, 6 } } }}, index_buffer);
 
     auto v_shader       = ogl::Shader::create(ogl::ShaderType::Vertex   , std::string(vertex_shader_code)   , false);
     auto f_shader       = ogl::Shader::create(ogl::ShaderType::Fragment , std::string(fragment_shader_code) , false);
@@ -96,7 +96,7 @@ int main(void)
         
         program->activate();
         vao->activate();
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         vao->deactivate();
 
         glfwSwapBuffers(window);
