@@ -3,16 +3,12 @@
 #include<fstream>
 #include<filesystem>
 
+// forward declaration hpp
+#include<ogl/ogl_forward.hpp>
+#include<ogl/types.hpp>
+
 namespace ogl
 {
-    enum class ShaderType : GLenum
-    {
-        Vertex      = GL_VERTEX_SHADER,
-        Fragment    = GL_FRAGMENT_SHADER
-    };
-
-    class Program;
-
     class Shader
     {
         friend class Program;

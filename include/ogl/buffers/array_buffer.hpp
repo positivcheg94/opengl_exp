@@ -4,6 +4,8 @@
 #include<vector>
 #include<set>
 
+// forward declaration hpp
+#include<ogl/ogl_forward.hpp>
 #include <ogl/types.hpp>
 #include <ogl/buffers/buffer.hpp>
 

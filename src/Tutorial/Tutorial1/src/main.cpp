@@ -21,16 +21,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-float vertices[] = {
-    0.5f,  0.5f, 0.0f,  // top right
-    0.5f, -0.5f, 0.0f,  // bottom right
-    -0.5f, -0.5f, 0.0f,  // bottom left
-    -0.5f,  0.5f, 0.0f   // top left 
-};
-unsigned int indices[] = {  // note that we start from 0!
-    0, 1, 3,   // first triangle
-    1, 2, 3    // second triangle
-};
+
 
 const char* vertex_shader_code =
 "#version 330 core\n"
@@ -69,10 +60,20 @@ int main(void)
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     glfwSwapInterval(1);
 
+    float vertices[] = {
+        0.5f,  0.5f, 0.0f,  // top right
+        0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left 
+    };
+    unsigned int indices[] = {  // note that we start from 0!
+        0, 1, 3,   // first triangle
+        1, 2, 3    // second triangle
+    };
     
     auto vertice_buffer = ogl::Buffer::create(ogl::BufferType::Array        , ogl::Float, vertices  , sizeof(vertices)  , ogl::UsageHint::StaticDraw);
     auto index_buffer   = ogl::Buffer::create(ogl::BufferType::ElementArray , ogl::UInt , indices   , sizeof(indices)   , ogl::UsageHint::StaticDraw);
-    auto vao            = ogl::ArrayBuffer::create({{ vertice_buffer, {{0, 3, ogl::Bool::False, 0, 0}} }}, index_buffer);
+    auto vao            = ogl::ArrayBuffer::create({{ vertice_buffer, {{0, 3, ogl::True, 0, 0}} }}, index_buffer);
 
     auto v_shader       = ogl::Shader::create(ogl::ShaderType::Vertex   , std::string(vertex_shader_code)   , false);
     auto f_shader       = ogl::Shader::create(ogl::ShaderType::Fragment , std::string(fragment_shader_code) , false);

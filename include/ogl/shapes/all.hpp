@@ -1,3 +1,3 @@
 #pragma once
 
-#include <ogl/program/base_shape.hpp>
+#include <ogl/shapes/base_shape.hpp>

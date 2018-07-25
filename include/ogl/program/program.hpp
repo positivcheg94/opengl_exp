@@ -1,5 +1,7 @@
 #pragma once
 
+// forward declaration hpp
+#include<ogl/ogl_forward.hpp>
 #include<ogl/program/shader.hpp>
 
 namespace ogl

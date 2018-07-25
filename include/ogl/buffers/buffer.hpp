@@ -2,47 +2,12 @@
 
 #include<memory>
 
+// forward declaration hpp
+#include<ogl/ogl_forward.hpp>
 #include<ogl/types.hpp>
 
 namespace ogl
 {
-    enum class BufferType : GLenum
-    {
-        Array = GL_ARRAY_BUFFER,
-        ElementArray = GL_ELEMENT_ARRAY_BUFFER,
-        CopyRead = GL_COPY_READ_BUFFER,
-        CopyWrite = GL_COPY_WRITE_BUFFER,
-        PixelUnpack = GL_PIXEL_UNPACK_BUFFER,
-        PixelPack = GL_PIXEL_PACK_BUFFER,
-        Texture = GL_TEXTURE_BUFFER,
-        TransformFeedback = GL_TRANSFORM_FEEDBACK_BUFFER,
-        Uniform = GL_UNIFORM_BUFFER
-    };
-
-    enum class UsageHint : GLenum
-    {
-        StaticDraw = GL_STATIC_DRAW,
-        StaticCopy = GL_STATIC_COPY,
-        StaticRead = GL_STATIC_READ,
-        DynamicDraw = GL_DYNAMIC_DRAW,
-        DynamicCopy = GL_DYNAMIC_COPY,
-        DynamicRead = GL_DYNAMIC_READ,
-        StreamDraw = GL_STREAM_DRAW,
-        StreamCopy = GL_STREAM_COPY,
-        StreamRead = GL_STREAM_READ
-    };
-
-    struct ValueType
-    {
-        GLenum type_index;
-        size_t type_size;
-    };
-
-    constexpr ValueType Float   { GL_FLOAT          , sizeof(float)         };
-    constexpr ValueType UInt    { GL_UNSIGNED_INT   , sizeof(unsigned int)  };
-
-    class ArrayBuffer;
-
     class Buffer
     {
         friend class ArrayBuffer;
